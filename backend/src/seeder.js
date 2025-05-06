@@ -19,7 +19,7 @@ const importData = async () => {
     const adminUser = await User.create({
       name: 'Admin User',
       email: 'admin@example.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: '123456',
       isAdmin: true,
     });
 
@@ -27,14 +27,14 @@ const importData = async () => {
     const user1 = await User.create({
       name: 'Mario Rossi',
       email: 'mario@example.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: '123456',
       isAdmin: false,
     });
     
     const user2 = await User.create({
       name: 'Giulia Bianchi',
       email: 'giulia@example.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: '123456',
       isAdmin: false,
     });
 

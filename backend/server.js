@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { connectDB } from './src/config/db.js';
-// Aggiungi questa importazione
 import productRoutes from './src/routes/productRoutes.js';
+import userRoutes from './src/routes/userRoutes.js';
 
 // Carica variabili d'ambiente
 dotenv.config();
@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 // import userRoutes from './src/routes/userRoutes.js';
 // import orderRoutes from './src/routes/orderRoutes.js';
 
-// app.use('/api/users', userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 // app.use('/api/orders', orderRoutes);
 

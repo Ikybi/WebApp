@@ -1,20 +1,13 @@
 import jwt from 'jsonwebtoken';
+import asyncHandler from './asyncHandler.js';
 import User from '../models/userModel.js';
-
-// Funzione per gestire eccezioni asincrone
-export const asyncHandler = fn => (req, res, next) =>
-  Promise.resolve(fn(req, res, next)).catch(next);
 
 // Proteggi le route
 export const protect = asyncHandler(async (req, res, next) => {
   let token;
   
-  // Verifica se c'è un token nei cookie o nell'header
-  if (req.cookies.jwt) {
-    token = req.cookies.jwt;
-  } else if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-    token = req.headers.authorization.split(' ')[1];
-  }
+  // Leggi JWT dal cookie
+  token = req.cookies.jwt;
   
   if (!token) {
     res.status(401);
@@ -25,7 +18,7 @@ export const protect = asyncHandler(async (req, res, next) => {
     // Verifica il token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
-    // Aggiungi l'utente alla request
+    // Aggiungi l'utente alla request (esclusa la password)
     req.user = await User.findById(decoded.id).select('-password');
     next();
   } catch (error) {
