@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { connectDB } from './src/config/db.js';
+// Aggiungi questa importazione
+import productRoutes from './src/routes/productRoutes.js';
 
 // Carica variabili d'ambiente
 dotenv.config();
@@ -14,7 +16,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // URL del tuo frontend Vite
+  origin: 'http://localhost:5173', // URL del frontend Vite
   credentials: true
 }));
 app.use(express.json());
@@ -31,11 +33,10 @@ app.get('/', (req, res) => {
 
 // Importa le route (assicurati di modificare anche questi file per usare ES modules)
 // import userRoutes from './src/routes/userRoutes.js';
-// import productRoutes from './src/routes/productRoutes.js';
 // import orderRoutes from './src/routes/orderRoutes.js';
 
 // app.use('/api/users', userRoutes);
-// app.use('/api/products', productRoutes);
+app.use('/api/products', productRoutes);
 // app.use('/api/orders', orderRoutes);
 
 // Gestione errori 404
