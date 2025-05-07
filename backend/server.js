@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import { connectDB } from './src/config/db.js';
 import productRoutes from './src/routes/productRoutes.js';
 import userRoutes from './src/routes/userRoutes.js';
+import orderRoutes from './src/routes/orderRoutes.js';
 
 // Carica variabili d'ambiente
 dotenv.config();
@@ -37,7 +38,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
-// app.use('/api/orders', orderRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Gestione errori 404
 app.use((req, res) => {
