@@ -3,15 +3,23 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 //import './App.css'
 import Footer from './components/Footer'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Navbar from './components/Navbar';
 
+const theme = createTheme({
+  typography: {
+    fontFamily: "'Montserrat', 'Roboto', 'Arial', sans-serif",
+  },
+});
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      
-      <Footer></Footer>
+       <Navbar />
+    
     </>
   )
 }
