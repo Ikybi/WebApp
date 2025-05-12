@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './components/Navbar';
+import Navbar1 from './components/Navbar1';
 
 const theme = createTheme({
   typography: {
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <>
-       <Navbar />
+       <Navbar1 />
     
     </>
   )
