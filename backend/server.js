@@ -6,6 +6,7 @@ import { connectDB } from './src/config/db.js';
 import productRoutes from './src/routes/productRoutes.js';
 import userRoutes from './src/routes/userRoutes.js';
 import orderRoutes from './src/routes/orderRoutes.js';
+import cartRoutes from './src/routes/cartRoutes.js';
 
 // Carica variabili d'ambiente
 dotenv.config();
@@ -32,13 +33,11 @@ app.get('/', (req, res) => {
   res.json({ message: 'API SneakerVault funzionante' });
 });
 
-// Importa le route (assicurati di modificare anche questi file per usare ES modules)
-// import userRoutes from './src/routes/userRoutes.js';
-// import orderRoutes from './src/routes/orderRoutes.js';
 
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/cart', cartRoutes);
 
 // Gestione errori 404
 app.use((req, res) => {

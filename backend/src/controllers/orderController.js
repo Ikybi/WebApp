@@ -1,5 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.js';
 import Order from '../models/orderModel.js';
+import Cart from '../models/cartModel.js';  // Aggiungi questa importazione
 
 // @desc    Crea un nuovo ordine
 // @route   POST /api/orders
@@ -35,6 +36,13 @@ export const addOrderItems = asyncHandler(async (req, res) => {
     });
 
     const createdOrder = await order.save();
+    
+    // Svuota il carrello dell'utente dopo la creazione dell'ordine
+    await Cart.findOneAndUpdate(
+      { user: req.user._id },
+      { $set: { cartItems: [] } },
+      { new: true }
+    );
 
     res.status(201).json(createdOrder);
   }
